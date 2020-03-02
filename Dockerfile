@@ -6,7 +6,7 @@ ENV BACKEND_PORT 8443
 ENV BACKEND_HOST localhost
 
 RUN apt-get update; \
-	apt-get install -y --no-install-recommends openssl hitch curl; \
+	apt-get install -y --no-install-recommends openssl hitch; \
 	rm -rf /var/lib/apt/lists/*; \
 	mkdir /etc/hitch/certs
 
