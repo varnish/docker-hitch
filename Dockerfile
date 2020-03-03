@@ -1,4 +1,4 @@
-FROM debian:stretch-slim
+FROM debian:buster-slim
 
 ENV FRONTEND_PORT 443
 ENV FRONTEND_HOST *
