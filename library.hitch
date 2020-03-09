@@ -1,0 +1,7 @@
+# this file was generated using https://github.com/varnish/docker-hitch/blob/f3abfbc2b7e0ab9c9fa7baf6df53e33456a6dc34/populate.sh
+Maintainers: Thijs Feryn <thijs@varni.sh> (@thijsferyn)
+GitRepo: https://github.com/varnish/docker-hitch.git	
+
+Tags: 1, 1.5, 1.5.0, 1.5.0-1 latest
+Architectures: amd64
+GitCommit: f3abfbc2b7e0ab9c9fa7baf6df53e33456a6dc34
