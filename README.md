@@ -1,5 +1,5 @@
 # The official Hitch Docker image [![Build Status](https://travis-ci.org/varnish/docker-hitch.svg?branch=master)](https://travis-ci.org/varnish/docker-hitch)
-[Hitch](https://hitch-tls.org/) is a *libev-based* high performance SSL/TLS proxy by Varnish Software. It is specifically built to terminate TLS connections at high scale and forwards unencrypted HTTP traffic to Varnish or any other HTTP backend.
+[Hitch](https://hitch-tls.org/) is a *libev-based* high performance *SSL/TLS proxy* by [Varnish Software](https://varnish-software.com). It is specifically built to terminate TLS connections at high scale and forwards unencrypted HTTP traffic to Varnish or any other HTTP backend.
 
 ## Running
 
@@ -20,7 +20,7 @@ Here's an example where Hitch connects to a Varnish container with the hostname 
 docker run --name=hitch -p 443:443 --env BACKEND_HOST=varnish --env BACKEND_PORT=8080 varnish/hitch:latest
 ```
 
-By default version 2 of the *PROXY protocol* is enabled. If you want to connect to Varnish over an *unencrypted HTTP connection*, please assign an empty string to the `PROXY_PROTOCOL_V2` environment variable as illustrated below:
+By default version 2 of the *PROXY protocol* is enabled. If you don't want to use the *PROXY protocol* to connect to Varnish, please assign an empty string to the `PROXY_PROTOCOL_V2` environment variable as illustrated below:
 
 ```
 docker run --name=hitch -p 443:443 --env PROXY_PROTOCOL_V2= varnish/hitch:latest
