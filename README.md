@@ -1,5 +1,5 @@
 # The official Hitch Docker image [![Build Status](https://travis-ci.org/varnish/docker-hitch.svg?branch=master)](https://travis-ci.org/varnish/docker-hitch)
-[Hitch](https://hitch-tls.org/) is a TLS proxy that is maintained by the Varnish community. It is specifically built to terminate TLS connections at high scale and forwards unencrypted HTTP traffic to Varnish or any other HTTP backend.
+[Hitch](https://hitch-tls.org/) is a *libev-based* high performance SSL/TLS proxy by Varnish Software. It is specifically built to terminate TLS connections at high scale and forwards unencrypted HTTP traffic to Varnish or any other HTTP backend.
 
 ## Running
 
