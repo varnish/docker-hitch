@@ -12,7 +12,8 @@ ENV BACKEND_PORT 8443
 ENV BACKEND_HOST localhost
 ENV PROXY_PROTOCOL --write-proxy-v2
 
-RUN apt-get update; \\
+RUN set -ex; \\
+        apt-get update; \\
 	apt-get install -y --no-install-recommends openssl hitch=$latest_version; \\
 	rm -rf /var/lib/apt/lists/*; \\
 	mkdir /etc/hitch/certs
