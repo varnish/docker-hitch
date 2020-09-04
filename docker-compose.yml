@@ -1,0 +1,20 @@
+version: '3'
+services:
+  echo-server:
+    image: "jmalloc/echo-server:latest"
+    container_name: echo-server
+    hostname: echo-server
+    ports:
+     - "8080:8080"
+  hitch:
+    image: "hitch"
+    container_name: hitch
+    hostname: hitch
+    ports:
+      - "443:443"
+    environment:
+      - BACKEND_HOST=echo-server
+      - BACKEND_PORT=8080
+      - PROXY_PROTOCOL=
+    depends_on:
+      - "echo-server"
