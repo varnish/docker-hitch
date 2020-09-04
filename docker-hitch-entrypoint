@@ -3,7 +3,7 @@ set -e
 
 # only add --config=... if was set and not empty
 ARG_CONF="${HITCH_CONFIG_FILE-/etc/hitch/hitch.conf}"
-if [ -n "${HITCH_CONFIG_FILE}" ]; then
+if [ -n "${ARG_CONF}" ]; then
 	ARG_CONF=--config="${ARG_CONF}"
 fi
 

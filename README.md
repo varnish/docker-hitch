@@ -29,7 +29,7 @@ By default Hitch will connect to Varnish using `localhost:8843` using the [PROXY
 
 ## Setting the certificate
 
-The Hitch Docker image comes with a self-signed certificate for "example.com" that is stored in `/etc/hitch/certs/default`. Using a bind mount, you can override the value of the certificate and use your own certificate.
+The Hitch Docker image comes with a self-signed certificate for "localhost" that is stored in `/etc/hitch/certs/default`. Using a bind mount, you can override the value of the certificate and use your own certificate.
 
 Here's an example:
 
