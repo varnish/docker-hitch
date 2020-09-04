@@ -19,7 +19,8 @@ RUN set -ex; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends hitch=$HITCH_VERSION; \
 	apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $fetchDeps; \
-	rm -rf /var/lib/apt/lists/*
+	rm -rf /var/lib/apt/lists/*; \
+	cp /etc/hitch/certs/example.com /etc/hitch/certs/default
 
 WORKDIR /etc/hitch
 
