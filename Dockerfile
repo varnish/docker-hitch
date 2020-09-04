@@ -21,11 +21,8 @@ RUN set -ex; \
 	apt-get install -y --no-install-recommends apt-transport-https ca-certificates $fetchDeps; \
 	key=E35824BB706997D9184818E715A7ECE02FE19401; \
 	export GNUPGHOME="$(mktemp -d)"; \
-echo getting key; \
 	gpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys $key; \
-echo got key; \
 	gpg --batch --export export $key > /etc/apt/trusted.gpg.d/hitch.gpg; \
-echo exported key; \
 	gpgconf --kill all; \
 	rm -rf $GNUPGHOME; \
 	echo deb https://packagecloud.io/varnishcache/hitch/debian/ buster main > /etc/apt/sources.list.d/hitch.list; \
