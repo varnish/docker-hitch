@@ -1,5 +1,7 @@
 FROM debian:buster-slim
 
+ENV HITCH_VERSION 1.6.1-1~buster
+
 ENV FRONTEND_PORT 443
 ENV FRONTEND_HOST *
 ENV BACKEND_PORT 8443
@@ -11,10 +13,25 @@ ENV CIPHERS ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDS
 ENV OCSPDIR /var/lib/hitch-ocsp
 
 RUN set -ex; \
+	fetchDeps=" \
+		dirmngr \
+		gnupg \
+	"; \
 	apt-get update; \
-	apt-get install -y curl; \
-	curl -s https://packagecloud.io/install/repositories/varnishcache/hitch/script.deb.sh | bash; \
-	apt-get install -y --no-install-recommends openssl hitch=1.6.1-1~buster; \
+	apt-get install -y --no-install-recommends apt-transport-https ca-certificates $fetchDeps; \
+	key=E35824BB706997D9184818E715A7ECE02FE19401; \
+	export GNUPGHOME="$(mktemp -d)"; \
+echo getting key; \
+	gpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys $key; \
+echo got key; \
+	gpg --batch --export export $key > /etc/apt/trusted.gpg.d/hitch.gpg; \
+echo exported key; \
+	gpgconf --kill all; \
+	rm -rf $GNUPGHOME; \
+	echo deb https://packagecloud.io/varnishcache/hitch/debian/ buster main > /etc/apt/sources.list.d/hitch.list; \
+	apt-get update; \
+	apt-get install -y --no-install-recommends hitch=$HITCH_VERSION; \
+	apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $fetchDeps; \
 	rm -rf /var/lib/apt/lists/*
 
 WORKDIR /etc/hitch
