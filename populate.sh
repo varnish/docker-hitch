@@ -10,7 +10,7 @@ Maintainers: Thijs Feryn <thijs@varni.sh> (@thijsferyn),
              Guillaume Quintard <guillaume@varni.sh> (@gquintard)
 GitRepo: https://github.com/varnish/docker-hitch.git	
 
-Tags: $other_tags, $latest_version latest
+Tags: $other_tags, $latest_version, latest
 Architectures: amd64
 GitCommit: `git log -n1 --pretty=oneline $workdir | cut -f1 -d" "`
 EOF
