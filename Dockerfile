@@ -13,7 +13,7 @@ ENV OCSPDIR /var/lib/hitch-ocsp
 RUN set -ex; \
 	apt-get update; \
 	apt-get install -y curl; \
-    curl -s https://packagecloud.io/install/repositories/varnishcache/hitch/script.deb.sh | bash; \
+	curl -s https://packagecloud.io/install/repositories/varnishcache/hitch/script.deb.sh | bash; \
 	apt-get install -y --no-install-recommends openssl hitch=1.6.1-1~buster; \
 	rm -rf /var/lib/apt/lists/*
 
@@ -25,10 +25,11 @@ ENTRYPOINT ["docker-hitch-entrypoint"]
 
 EXPOSE 443
 
-CMD hitch --user=hitch --group=hitch \
---frontend="[${FRONTEND_HOST}]:${FRONTEND_PORT}+${CERTIFICATE}" \ 
---backend="[${BACKEND_HOST}]:${BACKEND_PORT}" \
-${PROTOCOLS} \
---ciphers=${CIPHERS} \
---ocsp-dir=${OCSPDIR} \
-${PROXY_PROTOCOL}
+CMD hitch --user=hitch \
+	--group=hitch \
+	--frontend="[${FRONTEND_HOST}]:${FRONTEND_PORT}+${CERTIFICATE}" \
+	--backend="[${BACKEND_HOST}]:${BACKEND_PORT}" \
+	${PROTOCOLS} \
+	--ciphers=${CIPHERS} \
+	--ocsp-dir=${OCSPDIR} \
+	${PROXY_PROTOCOL}
