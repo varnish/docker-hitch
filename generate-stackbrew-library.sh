@@ -1,5 +1,5 @@
 #!/bin/bash
-cat > library.varnish <<- EOF
+cat <<- EOF
 # this file was generated using https://github.com/varnish/docker-hitch/blob/`git rev-parse HEAD`/generate-stackbrew-library.sh
 Maintainers: Thijs Feryn <thijs@varni.sh> (@thijsferyn),
              Guillaume Quintard <guillaume@varni.sh> (@gquintard)
