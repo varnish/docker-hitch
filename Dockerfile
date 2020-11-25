@@ -1,6 +1,6 @@
 FROM debian:buster-slim
 
-ENV HITCH_VERSION 1.6.1-1~buster
+ENV HITCH_VERSION 1.7.0-1~buster
 
 RUN set -ex; \
 	fetchDeps=" \

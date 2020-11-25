@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-latest_version=1.6.1-1
-other_tags="1, 1.6, 1.6.1"
+latest_version=1.7.0-1
+other_tags="1, 1.7, 1.7.0"
 
 populate_library() {
 	cat > library.hitch <<- EOF
