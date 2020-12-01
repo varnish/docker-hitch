@@ -1,20 +1,19 @@
 version: '3'
 services:
   echo-server:
-    image: "jmalloc/echo-server:latest"
+    image: "ealen/echo-server"
     container_name: echo-server
     hostname: echo-server
+    environment:
+     - PORT=80
     ports:
-     - "8080:8080"
+     - "80:80"
   hitch:
-    image: "hitch"
+    image: "hitch:latest"
     container_name: hitch
     hostname: hitch
     ports:
       - "443:443"
-    environment:
-      - BACKEND_HOST=echo-server
-      - BACKEND_PORT=8080
-      - PROXY_PROTOCOL=
+    command: --backend=[echo-server]:80 --alpn-protos=http/1.1 --write-proxy-v2=off
     depends_on:
       - "echo-server"
