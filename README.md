@@ -69,7 +69,7 @@ basicConstraints        = CA:FALSE
 subjectAltName          = @SubjectAltName@
 ```
 
-During certificate creation, the `CommonName` and `SubjectAltName` are prompted, and in the in you get a self-signed certificate that is valid for 30 years. The certificate is then copied into `/etc/hitch/certs/default`.
+During certificate creation, the `CommonName` and `SubjectAltName` are prompted, and in the end you get a self-signed certificate that is valid for 30 years. The certificate is then copied into `/etc/hitch/certs/default`.
 
 Using a bind mount, you can override the value of the certificate and use your own certificate, which  is advisable.
 
