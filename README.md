@@ -41,37 +41,9 @@ docker run hitch "--backend=[varnish]:8443"
 
 The Hitch Docker image comes with a self-signed certificate that is stored in `/etc/hitch/certs/default`. 
 
-This certificate is automatically created during *Hitch* package install, and uses the following command:
+This certificate is automatically created during *Hitch* package install, and is a self-signed certificate using 2048-bit RSA-encrypted cipher. It is set up for the `localhost` hostname, with an expiration date 30 years in the future. 
 
-```console
-make-ssl-cert /usr/share/ssl-cert/ssleay.cnf  /etc/hitch/testcert.pem
-```
-
-This is what the `/usr/share/ssl-cert/ssleay.cnf` looks like:
-
-```
-RANDFILE                = /dev/urandom
-
-[ req ]
-default_bits            = 2048
-default_keyfile         = privkey.pem
-distinguished_name      = req_distinguished_name
-prompt                  = no
-policy			= policy_anything
-req_extensions          = v3_req
-x509_extensions         = v3_req
-
-[ req_distinguished_name ]
-commonName                      = @HostName@
-
-[ v3_req ]
-basicConstraints        = CA:FALSE
-subjectAltName          = @SubjectAltName@
-```
-
-During certificate creation, the `CommonName` and `SubjectAltName` are prompted, and in the end you get a self-signed certificate that is valid for 30 years. The certificate is then copied into `/etc/hitch/certs/default`.
-
-Using a bind mount, you can override the value of the certificate and use your own certificate, which  is advisable.
+This certificate is only suited for testing. Using a bind mount, you can override the value of the certificate and use your own certificate, which is advisable.
 
 Here's an example:
 
