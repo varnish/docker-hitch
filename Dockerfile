@@ -8,7 +8,7 @@ RUN set -ex; \
 		gnupg \
 	"; \
 	apt-get update; \
-	apt-get install -y --no-install-recommends apt-transport-https ca-certificates $fetchDeps; \
+	apt-get install -y --no-install-recommends ca-certificates $fetchDeps; \
 	key=E35824BB706997D9184818E715A7ECE02FE19401; \
 	export GNUPGHOME="$(mktemp -d)"; \
 	gpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys $key; \
