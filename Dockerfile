@@ -18,6 +18,8 @@ RUN set -ex; \
 	echo deb https://packagecloud.io/varnishcache/hitch/debian/ buster main > /etc/apt/sources.list.d/hitch.list; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends hitch=$HITCH_VERSION; \
+	usermod -u 443 hitch; \
+	groupmod -g 443 hitch; \
 	apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $fetchDeps; \
 	rm -rf /var/lib/apt/lists/*; \
 	mkdir /etc/hitch/certs/ /var/lib/hitch/; \
