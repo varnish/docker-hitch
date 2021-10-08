@@ -9,22 +9,22 @@ RUN set -ex; \
 	"; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends ca-certificates $fetchDeps; \
-	key=E35824BB706997D9184818E715A7ECE02FE19401; \
-	export GNUPGHOME="$(mktemp -d)"; \
-	gpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys $key; \
-	gpg --batch --export export $key > /etc/apt/trusted.gpg.d/hitch.gpg; \
-	gpgconf --kill all; \
-	rm -rf $GNUPGHOME; \
+	curl -L https://packagecloud.io/varnishcache/hitch/gpgkey | apt-key add - ; \
 	echo deb https://packagecloud.io/varnishcache/hitch/debian/ buster main > /etc/apt/sources.list.d/hitch.list; \
 	apt-get update; \
 	adduser --quiet --system --no-create-home --uid 443 --group hitch; \
 	groupmod -g 443 hitch; \
-	apt-get install -y --no-install-recommends hitch=$HITCH_VERSION; \
+	case "$(dpkg --print-architecture)" in \
+		amd64) apt-get install -y --no-install-recommends hitch=$HITCH_VERSION;; \
+		arm64) apt-get install -y --no-install-recommends hitch;; \
+	esac && \
 	apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $fetchDeps; \
 	rm -rf /var/lib/apt/lists/*; \
-	mkdir /etc/hitch/certs/ /var/lib/hitch/; \
-	cp /etc/hitch/testcert.pem /etc/hitch/certs/default; \
-	sed -i 's/daemon = on/daemon = off/' /etc/hitch/hitch.conf
+	if [ "$(dpkg --print-architecture)" = amd64 ]; then \
+		mkdir /etc/hitch/certs/ /var/lib/hitch/; \
+		cp /etc/hitch/testcert.pem /etc/hitch/certs/default; \
+		sed -i 's/daemon = on/daemon = off/' /etc/hitch/hitch.conf; \
+	fi
 
 WORKDIR /etc/hitch
 
