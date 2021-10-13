@@ -4,7 +4,7 @@ ARG SRCVER=1.7.0
 ARG PKGVER=1
 ARG DISTVER=bullseye
 ARG PKGCOMMIT=8f683fe849ac391cd025539ce3df5c5a821b11bb
-ARG SHASUM=683fb7986d97c2288512261448e4478472e58809ead8e1ffd63741ab7b67b8c44900dc81dc1e054597b3fed4f9bcbfe6194904939e30761d61e7f3584dc793f3
+ARG SHASUM=d82d2cb5d0be39dcd40ffd969d0a1c25d4d253c21078f8b2b1fca7a4e93acc84c15a53590966917b6382faffc24abdc7928b713460b1f28a321ac5b8fafd8313
 
 RUN set -ex; \
     BASE_PKGS="apt-utils curl dirmngr dpkg-dev debhelper devscripts equivs fakeroot git gnupg pkg-config"; \
@@ -19,7 +19,7 @@ RUN set -ex; \
     git checkout ${PKGCOMMIT}; \
     git checkout tweaks; \
     rm -rf .git; \
-    curl -Lf https://github.com/varnish/hitch/archive/refs/tags/${SRCVER}.tar.gz -o $tmpdir/orig.tgz; \
+    curl -Lf https://hitch-tls.org/source/hitch-${SRCVER}.tar.gz -o $tmpdir/orig.tgz; \
     echo "${SHASUM}  $tmpdir/orig.tgz" | sha512sum -c -; \
     tar xavf $tmpdir/orig.tgz --strip 1; \
     sed -i 's/python-docutils/python-docutils | python3-docutils/' debian/control; \
