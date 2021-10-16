@@ -2,7 +2,7 @@
 [![Docker Stars](https://img.shields.io/docker/stars/_/hitch.svg)](https://hub.docker.com/r/_/hitch)
 [![GitHub CI build status badge](https://github.com/varnish/docker-hitch/workflows/GitHub%20CI/badge.svg)](https://github.com/varnish/docker-hitch/actions?query=workflow%3A%22GitHub+CI%22)
 
-# The official Hitch Docker image [![Build Status](https://travis-ci.org/varnish/docker-hitch.svg?branch=master)](https://travis-ci.org/varnish/docker-hitch)
+# The official Hitch Docker image
 [Hitch](https://hitch-tls.org/) is a *libev-based* high performance *SSL/TLS proxy* by [Varnish Software](https://varnish-software.com). It is specifically built to terminate TLS connections at high scale and forwards unencrypted HTTP traffic to Varnish or any other HTTP backend.
 
 # How to use this image
