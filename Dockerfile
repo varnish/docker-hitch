@@ -13,7 +13,7 @@ RUN set -ex; \
     tmpdir="$(mktemp -d)"; \
     cd "$tmpdir"; \
     apt-get update; \
-    apt-get install -y $BASE_PKGS; \
+    apt-get install -y --no-install-recommends $BASE_PKGS; \
     git clone https://github.com/varnish/pkg-hitch.git; \
     cd pkg-hitch; \
     git checkout ${PKGCOMMIT}; \
@@ -29,7 +29,7 @@ RUN set -ex; \
     sed -i '' debian/hitch*; \
     dpkg-buildpackage -us -uc -j"$(nproc)"; \
     apt-get -y purge --auto-remove hitch-build-deps $BASE_PKGS; \
-    apt-get -y install ../*.deb; \
+    apt-get -y --no-install-recommends install ../*.deb; \
     sed -i 's/daemon = on/daemon = off/' /etc/hitch/hitch.conf; \
     rm -rf /var/lib/apt/lists/* "$tmpdir"
 
