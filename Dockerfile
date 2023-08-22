@@ -1,10 +1,10 @@
 FROM debian:bullseye-slim
 
-ARG SRCVER=1.7.3
+ARG SRCVER=1.8.0
 ARG PKGVER=1
 ARG DISTVER=bullseye
 ARG PKGCOMMIT=f12ab7958bc4885f3f00311cbca5103d9e6ba794
-ARG SHASUM=88de82e639e7f9b7873bb7226fcbcbc4cd5779c75a5bd21fca8e1ca927a2a3ae9eb455d73d1f42d4dc45546118c718d1b58396836ed9c8acac281d487c9fe8fd
+ARG SHASUM=62b3554d668c9d17382415db10898bf661ee76343e4ee364f904457efda6cb1eeee7cb81d7a3897734024812b64b1c0e2dc305605706d81a0c1f6030508bf7e2
 
 RUN set -ex; \
     BASE_PKGS="apt-utils curl dirmngr dpkg-dev debhelper devscripts equivs fakeroot git gnupg pkg-config"; \
