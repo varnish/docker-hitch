@@ -11,7 +11,7 @@ Maintainers: Thijs Feryn <thijs@varni.sh> (@thijsferyn),
 GitRepo: https://github.com/varnish/docker-hitch.git	
 
 Tags: $other_tags, $latest_version, latest
-Architectures: amd64, arm32v7, arm64v8, i386, ppc64le, s390x
+Architectures: amd64, arm32v7, arm64v8, i386
 GitCommit: `git log -n1 --pretty=oneline $workdir | cut -f1 -d" "`
 EOF
 }

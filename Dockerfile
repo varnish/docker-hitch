@@ -1,4 +1,4 @@
-FROM debian:bullseye-slim
+FROM debian:bookworm-slim
 
 ARG SRCVER=1.8.0
 ARG PKGVER=1
